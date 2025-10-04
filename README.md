@@ -1,8 +1,8 @@
-# EcoWeave
+# Rewoven
 
 İleride işsiz kalmamak için yapay zekayı verimli ve mantıklı kullanmak şart. Bu yüzden bu etkinlikle beraber yapay zekayı doğru kullanan bir girişimci olmaya hazırlanıyoruz.
 
-Ürün: EcoWeave
+Ürün: Rewoven
 Slogan: "Doğayı giy, geleceği koru."
 📌 Nedir?
 
