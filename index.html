@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rewoven - Geleceğin Şehri</title>
+    <style>
+        /* Temel stiller */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        /* Gezinme çubuğu stilleri */
+        .navbar {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #2c3e50;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover {
+            color: #3498db;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin-left: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #3498db;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Kahraman bölümü stilleri */
+        .hero-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #555;
+            max-width: 500px;
+        }
+
+        .cta-button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .cta-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+        }
+
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            max-width: 500px;
+            height: 350px;
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            transform: scale(1.02);
+        }
+
+        /* Hakkımızda bölümü stilleri */
+        .about-us {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .circular-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .circular-image .image-placeholder {
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(45deg, #2c3e50, #3498db);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .circular-image .image-placeholder:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* Özellikler bölümü stilleri */
+        .features {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .features-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .features-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-weight: 700;
+        }
+
+        .features-header p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .grid-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .feature-column {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .feature-column:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .feature-image .image-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.1rem;
+            transition: transform 0.5s ease;
+        }
+
+        .feature-column:nth-child(1) .feature-image .image-placeholder {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+
+        .feature-column:nth-child(2) .feature-image .image-placeholder {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+        }
+
+        .feature-column:nth-child(3) .feature-image .image-placeholder {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+        }
+
+        .feature-column:hover .feature-image .image-placeholder {
+            transform: scale(1.1);
+        }
+
+        .feature-column h3 {
+            font-size: 1.5rem;
+            margin: 25px 25px 15px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .feature-column p {
+            font-size: 1rem;
+            margin: 0 25px 25px;
+            color: #555;
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        /* Dönüşümlü içerik bölümleri */
+        .content-section {
+            padding: 80px 0;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .text-container {
+            flex: 1;
+        }
+
+        .text-container h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .text-container p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .section-2 .section-container {
+            flex-direction: row-reverse;
+        }
+
+        /* Takım bölümü stilleri */
+        .team-section {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .team-section > h3 {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 60px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .profile-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .profile-item {
+            width: 200px;
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+            font-weight: 500;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-item:nth-child(1) .profile-image {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+        }
+
+        .profile-item:nth-child(2) .profile-image {
+            background: linear-gradient(45deg, #2ecc71, #27ae60);
+        }
+
+        .profile-item:nth-child(3) .profile-image {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+
+        .profile-item:nth-child(4) .profile-image {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+        }
+
+        .profile-item:nth-child(5) .profile-image {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+        }
+
+        .profile-item:nth-child(6) .profile-image {
+            background: linear-gradient(45deg, #1abc9c, #16a085);
+        }
+
+        .profile-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .profile-role {
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* Fiyatlandırma bölümü stilleri */
+        .pricing-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .pricing-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .pricing-section > p {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: linear-gradient(135deg, #fff9c4, #fdd835);
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #5d4037;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #5d4037;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #8d6e63;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 30px;
+            flex-grow: 1;
+        }
+
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(93, 64, 55, 0.1);
+            color: #5d4037;
+            font-size: 1rem;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #388e3c;
+            font-weight: bold;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-btn {
+            background: #5d4037;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            margin-top: auto;
+        }
+
+        .pricing-btn:hover {
+            background: #3e2723;
+            transform: translateY(-2px);
+        }
+
+        .featured {
+            transform: scale(1.05);
+            background: linear-gradient(135deg, #ffeb3b, #fbc02d);
+        }
+
+        .featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .featured .pricing-btn {
+            background: #e65100;
+        }
+
+        .featured .pricing-btn:hover {
+            background: #bf360c;
+        }
+
+        /* SSS bölümü stilleri */
+        .faq-section {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .faq-section > h3 {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 50px;
+            font-weight: 400;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e9ecef;
+            padding: 30px;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .faq-question {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:after {
+            content: "+";
+            font-size: 1.5rem;
+            color: #3498db;
+            font-weight: 300;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question:after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            margin-top: 15px;
+        }
+
+        /* İletişim bölümü stilleri */
+        .contact-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .contact-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #f8f9fa;
+            font-weight: 500;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.7;
+            color: #e9ecef;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .contact-item i {
+            width: 30px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-style: normal;
+        }
+
+        .map-container {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(45deg, #2c3e50, #34495e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* Alt bilgi stilleri */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 20px 20px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .footer-column p {
+            color: #bdc3c7;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #3498db;
+        }
+
+        .copyright {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive tasarım */
+        @media (max-width: 768px) {
+            .hero-container, .about-container, .contact-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 40px;
+            }
+
+            .section-container {
+                flex-direction: column;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .section-2 .section-container {
+                flex-direction: column;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .grid-container, .card-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .featured {
+                transform: none;
+            }
+
+            .featured:hover {
+                transform: translateY(-10px);
+            }
+
+            .hero-content h1, .about-content h2, .features-header h2, 
+            .pricing-section h2, .faq-section h2, .contact-info h2 {
+                font-size: 2rem;
+            }
+
+            .profile-grid {
+                gap: 30px;
+            }
+
+            .profile-item {
+                width: 160px;
+            }
+
+            .profile-image {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-section, .about-us, .features, .pricing-section, .faq-section, .contact-section {
+                padding: 60px 0;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-column {
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .hero-content h1, .about-content h2, .features-header h2, 
+            .pricing-section h2, .faq-section h2, .contact-info h2 {
+                font-size: 1.8rem;
+            }
+
+            .profile-item {
+                width: 140px;
+            }
+
+            .profile-image {
+                width: 130px;
+                height: 130px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Gezinme Çubuğu -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Rewoven</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link">Ana Sayfa</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Hakkımızda</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Projeler</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Ekibimiz</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">İletişim</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Kahraman Bölümü -->
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Rewoven: Geleceğin Akıllı Şehri</h1>
+                <p class="subtitle">Sürdürülebilir, teknolojik ve yaşanabilir bir dünya şehri olma yolunda ilerliyoruz. Yenilikçi projelerimiz ve vizyoner yaklaşımımızla geleceği şekillendiriyoruz.</p>
+                <button class="cta-button">Keşfetmeye Başla</button>
+            </div>
+            <div class="hero-visual">
+                <div class="image-placeholder">Rewoven Vizyon Görseli</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hakkımızda Bölümü -->
+    <section class="about-us">
+        <div class="about-container">
+            <div class="circular-image">
+                <div class="image-placeholder">Kayseri Görseli</div>
+            </div>
+            <div class="about-content">
+                <h2>Rewoven Hakkında</h2>
+                <p>Rewoven 2 projesi, şehrimizi geleceğin akıllı, sürdürülebilir ve yaşanabilir kenti haline getirmeyi hedefleyen kapsamlı bir dönüşüm hareketidir.</p>
+                <p>Gelecek nesillere daha yeşil, daha temiz ve daha akıllı bir Kayseri bırakmak için bugünden adımlar atıyor, şehrimizin tarihi dokusunu korurken modern ihtiyaçlara cevap veren altyapılar inşa ediyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Özellikler Bölümü -->
+    <section class="features">
+        <div class="features-header">
+            <h2>Rewoven Ana Projeleri</h2>
+            <p>Geleceğin şehrini inşa etmek için hayata geçirdiğimiz öncü projeler ve yenilikçi çözümler</p>
+        </div>
+        <div class="grid-container">
+            <div class="feature-column">
+                <div class="feature-image">
+                    <div class="image-placeholder">Akıllı Ulaşım Sistemi</div>
+                </div>
+                <h3>Akıllı Ulaşım</h3>
+                <p>Otonom araçlar, akıllı trafik yönetimi ve entegre toplu taşıma sistemleri ile geleceğin ulaşımını şekillendiriyoruz.</p>
+            </div>
+            <div class="feature-column">
+                <div class="feature-image">
+                    <div class="image-placeholder">Sürdürülebilir Enerji</div>
+                </div>
+                <h3>Yeşil Enerji</h3>
+                <p>Güneş ve rüzgar enerjisi projeleri ile karbon ayak izimizi azaltıyor, temiz enerji kaynaklarına yatırım yapıyoruz.</p>
+            </div>
+            <div class="feature-column">
+                <div class="feature-image">
+                    <div class="image-placeholder">Akıllı Şehir Teknolojileri</div>
+                </div>
+                <h3>Dijital Altyapı</h3>
+                <p>5G ağları, IoT sistemleri ve akıllı şebekeler ile tamamen bağlantılı bir şehir ekosistemi oluşturuyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dönüşümlü İçerik Bölümü 1 -->
+    <section class="content-section section-1">
+        <div class="section-container">
+            <div class="image-container">
+                <div class="image-placeholder" style="background:linear-gradient(45deg, #3498db, #2980b9)">Teknoloji Görseli</div>
+            </div>
+            <div class="text-container">
+                <h2>Modern Teknoloji Çözümleri</h2>
+                <p>Yenilikçi teknoloji çözümlerimizle işletmenizin dijital dönüşüm sürecini hızlandırıyoruz. Uzman ekibimiz, en son teknolojileri kullanarak size özel çözümler sunar.</p>
+                <p>20 yılı aşkın deneyimimizle, sektörünüzdeki zorlukları anlıyor ve bu zorlukları fırsata dönüştürecek çözümler geliştiriyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dönüşümlü İçerik Bölümü 2 -->
+    <section class="content-section section-2">
+        <div class="section-container">
+            <div class="image-container">
+                <div class="image-placeholder" style="background:linear-gradient(45deg, #2ecc71, #27ae60)">Sürdürülebilirlik Görseli</div>
+            </div>
+            <div class="text-container">
+                <h2>Sürdürülebilir Gelişim</h2>
+                <p>Çevre dostu yaklaşımlarımız ve sürdürülebilir gelişim stratejilerimizle gelecek nesillere daha yaşanabilir bir dünya bırakmak için çalışıyoruz.</p>
+                <p>Yeşil enerji projelerimiz ve çevre koruma politikalarımızla sektörümüzde öncü bir rol üstleniyor, müşterilerimize değer katıyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Takım Bölümü -->
+    <section class="team-section">
+        <h2>Ekibimizle Tanışın</h2>
+        <h3>Alanında uzman ekibimiz, en iyi hizmeti sunmak için burada</h3>
+        <div class="profile-grid">
+            <div class="profile-item">
+                <div class="profile-image">Profil 1</div>
+                <div class="profile-name">Ahmet Yılmaz</div>
+                <div class="profile-role">Kurucu & CEO</div>
+            </div>
+            <div class="profile-item">
+                <div class="profile-image">Profil 2</div>
+                <div class="profile-name">Ayşe Demir</div>
+                <div class="profile-role">Proje Yöneticisi</div>
+            </div>
+            <div class="profile-item">
+                <div class="profile-image">Profil 3</div>
+                <div class="profile-name">Mehmet Kaya</div>
+                <div class="profile-role">Teknoloji Lideri</div>
+            </div>
+            <div class="profile-item">
+                <div class="profile-image">Profil 4</div>
+                <div class="profile-name">Zeynep Şahin</div>
+                <div class="profile-role">Tasarım Uzmanı</div>
+            </div>
+            <div class="profile-item">
+                <div class="profile-image">Profil 5</div>
+                <div class="profile-name">Can Öztürk</div>
+                <div class="profile-role">Geliştirici</div>
+            </div>
+            <div class="profile-item">
+                <div class="profile-image">Profil 6</div>
+                <div class="profile-name">Elif Aydın</div>
+                <div class="profile-role">İş Geliştirme</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fiyatlandırma Bölümü -->
+    <section class="pricing-section">
+        <h2>Fiyatlandırma Planları</h2>
+        <p>İhtiyaçlarınıza uygun perfect planı seçin. Tüm planlarımız temel özellikleri içerir.</p>
+        <div class="card-container">
+            <div class="pricing-card">
+                <h3>Temel</h3>
+                <div class="price">₺199<span>/ay</span></div>
+                <ul class="features-list">
+                    <li>10 GB Depolama Alanı</li>
+                    <li>5 Kullanıcı Hesabı</li>
+                    <li>Temel Destek</li>
+                    <li>Email Desteği</li>
+                </ul>
+                <button class="pricing-btn">Başlayın</button>
+            </div>
+            <div class="pricing-card featured">
+                <h3>Profesyonel</h3>
+                <div class="price">₺399<span>/ay</span></div>
+                <ul class="features-list">
+                    <li>50 GB Depolama Alanı</li>
+                    <li>20 Kullanıcı Hesabı</li>
+                    <li>7/24 Öncelikli Destek</li>
+                    <li>Gelişmiş Analitik</li>
+                    <li>Özel Domain</li>
+                </ul>
+                <button class="pricing-btn">Popüler Seçim</button>
+            </div>
+            <div class="pricing-card">
+                <h3>Kurumsal</h3>
+                <div class="price">₺799<span>/ay</span></div>
+                <ul class="features-list">
+                    <li>Sınırsız Depolama</li>
+                    <li>Sınırsız Kullanıcı</li>
+                    <li>7/24 Özel Destek</li>
+                    <li>Gelişmiş Güvenlik</li>
+                    <li>Özel Çözümler</li>
+                </ul>
+                <button class="pricing-btn">İletişime Geçin</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SSS Bölümü -->
+    <section class="faq-section">
+        <h2>Sıkça Sorulan Sorular</h2>
+        <h3>Merak ettiğiniz soruların cevaplarını aşağıda bulabilirsiniz</h3>
+        <div class="faq-container">
+            <div class="faq-item">
+                <h3 class="faq-question">Hizmetlerinizden nasıl yararlanabilirim?</h3>
+                <p class="faq-answer">Web sitemiz üzerinden kayıt olarak hemen başlayabilirsiniz. Kayıt işlemi tamamlandıktan sonra size özel panelinize erişim sağlayarak tüm hizmetlerimizden faydalanmaya başlayabilirsiniz.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Ödeme yöntemleriniz nelerdir?</h3>
+                <p class="faq-answer">Kredi kartı, banka havalesi ve PayPal ile ödeme yapabilirsiniz. Tüm ödeme işlemleriniz 256 bit SSL sertifikası ile güvence altındadır.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Destek ekibinize nasıl ulaşabilirim?</h3>
+                <p class="faq-answer">7/24 destek hizmetimiz bulunmaktadır. E-posta, telefon ve canlı destek hatlarımızdan bize ulaşabilirsiniz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- İletişim Bölümü -->
+    <section class="contact-section">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h2>Bizimle İletişime Geçin</h2>
+                <h3>Size Nasıl Yardımcı Olabiliriz?</h3>
+                <p>Projeleriniz, sorularınız veya işbirliği fırsatları için bizimle iletişime geçmekten çekinmeyin.</p>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i>📍</i>
+                        <span>Atatürk Bulvarı No:123, Kayseri</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>📞</i>
+                        <span>+90 (352) 123 45 67</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>✉️</i>
+                        <span>info@kayseri2050.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <div class="map-placeholder">Kayseri Konum Haritası</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alt Bilgi -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h4>Rewoven </h4>
+                <p>Geleceğin akıllı, sürdürülebilir ve yaşanabilir şehrini birlikte inşa ediyoruz.</p>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">t</a>
+                    <a href="#" title="Instagram">i</a>
+                    <a href="#" title="LinkedIn">in</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Hızlı Bağlantılar</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Ana Sayfa</a></li>
+                    <li><a href="#">Hakkımızda</a></li>
+                    <li><a href="#">Projeler</a></li>
+                    <li><a href="#">Hizmetler</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Projelerimiz</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Akıllı Ulaşım</a></li>
+                    <li><a href="#">Yeşil Enerji</a></li>
+                    <li><a href="#">Dijital Altyapı</a></li>
+                    <li><a href="#">Kentsel Dönüşüm</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Destek</h4>
+                <ul class="footer-links">
+                    <li><a href="#">SSS</a></li>
+                    <li><a href="#">İletişim</a></li>
+                    <li><a href="#">Gizlilik Politikası</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 Rewoven. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        // SSS açılıp kapanması
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>
